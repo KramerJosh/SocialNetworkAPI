@@ -1,21 +1,6 @@
-// get all users
-
-// get single user by id
-
-// create a new user
-
-// update a user
-
-// delete user (BONUS: and delete associated thoughts)
-
-// add friend to friend list
-
-// remove friend from friend list
-
-
 import { Request, Response } from 'express';
-import User from '../models/User';
-import Thought from '../models/Thought';
+import User from '../models/User.js';
+import Thought from '../models/Thought.js';
 
 const userController = {
   // Get all users
