@@ -4,7 +4,7 @@ import thoughtRoutes from './thought-routes.js';
 
 const router = Router();
 
-router.use('/api/users', userRoutes);
-router.use('/api/thoughts', thoughtRoutes);
+router.use('/users', userRoutes);
+router.use('/thoughts', thoughtRoutes);
 
 export default router;
