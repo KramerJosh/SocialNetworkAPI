@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import thoughtController from '../controllers/thought-controller';
+import thoughtController from '../../controllers/thought-controller';
 const router = Router();
 // /api/thoughts
 router.get('/', thoughtController.getAllThoughts);

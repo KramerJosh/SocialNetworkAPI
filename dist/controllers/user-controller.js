@@ -1,9 +1,9 @@
 // get all users
-import User from '../models/user';
-import Thought from '../models/thought';
+import User from '../models/User';
+import Thought from '../models/Thought';
 const userController = {
     // Get all users
-    async getAllUsers(req, res) {
+    async getAllUsers(_req, res) {
         try {
             const users = await User.find().populate('thoughts').populate('friends');
             res.json(users);
@@ -21,10 +21,10 @@ const userController = {
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
             }
-            res.json(user);
+            return res.json(user);
         }
         catch (err) {
-            res.status(500).json(err);
+            return res.status(500).json(err);
         }
     },
     // Create a new user
@@ -44,10 +44,10 @@ const userController = {
             if (!updatedUser) {
                 return res.status(404).json({ message: 'User not found' });
             }
-            res.json(updatedUser);
+            return res.json(updatedUser);
         }
         catch (err) {
-            res.status(500).json(err);
+            return res.status(500).json(err);
         }
     },
     // Delete user and associated thoughts
@@ -60,10 +60,10 @@ const userController = {
             // Remove associated thoughts
             await Thought.deleteMany({ _id: { $in: user.thoughts } });
             await user.deleteOne();
-            res.json({ message: 'User and associated thoughts deleted successfully' });
+            return res.json({ message: 'User and associated thoughts deleted successfully' });
         }
         catch (err) {
-            res.status(500).json(err);
+            return res.status(500).json(err);
         }
     },
     // Add a friend to the friend list
@@ -73,10 +73,10 @@ const userController = {
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
             }
-            res.json(user);
+            return res.json(user);
         }
         catch (err) {
-            res.status(500).json(err);
+            return res.status(500).json(err);
         }
     },
     // Remove a friend from the friend list
@@ -86,10 +86,10 @@ const userController = {
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
             }
-            res.json(user);
+            return res.json(user);
         }
         catch (err) {
-            res.status(500).json(err);
+            return res.status(500).json(err);
         }
     }
 };

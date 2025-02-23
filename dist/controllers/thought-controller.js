@@ -1,9 +1,9 @@
 // create a thought
-import Thought from '../models/thought';
-import User from '../models/user';
+import Thought from '../models/Thought';
+import User from '../models/User';
 const thoughtController = {
     // get all thoughts
-    async getAllThoughts(req, res) {
+    async getAllThoughts(_req, res) {
         try {
             const thoughts = await Thought.find();
             res.json(thoughts);
@@ -19,10 +19,10 @@ const thoughtController = {
             if (!thought) {
                 return res.status(404).json({ message: 'Thought not found' });
             }
-            res.json(thought);
+            return res.json(thought); // Explicitly return here
         }
         catch (err) {
-            res.status(500).json(err);
+            return res.status(500).json(err); // Explicitly return in catch
         }
     },
     // Create a thought
@@ -44,10 +44,10 @@ const thoughtController = {
             if (!updatedThought) {
                 return res.status(404).json({ message: 'Thought not found' });
             }
-            res.json(updatedThought);
+            return res.json(updatedThought);
         }
         catch (err) {
-            res.status(500).json(err);
+            return res.status(500).json(err);
         }
     },
     // Delete a thought
@@ -57,10 +57,10 @@ const thoughtController = {
             if (!deletedThought) {
                 return res.status(404).json({ message: 'Thought not found' });
             }
-            res.json({ message: 'Thought deleted successfully' });
+            return res.json({ message: 'Thought deleted successfully' });
         }
         catch (err) {
-            res.status(500).json(err);
+            return res.status(500).json(err);
         }
     },
     // Add a reaction to a thought
@@ -70,10 +70,10 @@ const thoughtController = {
             if (!updatedThought) {
                 return res.status(404).json({ message: 'Thought not found' });
             }
-            res.json(updatedThought);
+            return res.json(updatedThought);
         }
         catch (err) {
-            res.status(500).json(err);
+            return res.status(500).json(err);
         }
     },
     // Remove a reaction from a thought
@@ -83,10 +83,10 @@ const thoughtController = {
             if (!updatedThought) {
                 return res.status(404).json({ message: 'Thought not found' });
             }
-            res.json(updatedThought);
+            return res.json(updatedThought);
         }
         catch (err) {
-            res.status(500).json(err);
+            return res.status(500).json(err);
         }
     }
 };

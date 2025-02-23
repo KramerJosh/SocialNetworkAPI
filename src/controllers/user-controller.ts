@@ -14,12 +14,12 @@
 
 
 import { Request, Response } from 'express';
-import User from '../models/user';
-import Thought from '../models/thought';
+import User from '../models/User';
+import Thought from '../models/Thought';
 
 const userController = {
   // Get all users
-  async getAllUsers(req: Request, res: Response) {
+  async getAllUsers(_req: Request, res: Response) {
     try {
       const users = await User.find().populate('thoughts').populate('friends');
       res.json(users);
@@ -39,9 +39,9 @@ const userController = {
         return res.status(404).json({ message: 'User not found' });
       }
 
-      res.json(user);
+      return res.json(user);
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   },
 
@@ -64,9 +64,9 @@ const userController = {
         return res.status(404).json({ message: 'User not found' });
       }
 
-      res.json(updatedUser);
+      return res.json(updatedUser);
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   },
 
@@ -84,9 +84,9 @@ const userController = {
 
       await user.deleteOne();
 
-      res.json({ message: 'User and associated thoughts deleted successfully' });
+      return res.json({ message: 'User and associated thoughts deleted successfully' });
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   },
 
@@ -103,9 +103,9 @@ const userController = {
         return res.status(404).json({ message: 'User not found' });
       }
 
-      res.json(user);
+      return res.json(user);
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   },
 
@@ -122,9 +122,9 @@ const userController = {
         return res.status(404).json({ message: 'User not found' });
       }
 
-      res.json(user);
+      return res.json(user);
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   }
 };

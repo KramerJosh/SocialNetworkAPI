@@ -9,13 +9,15 @@
 // remove reaction from a thought
 
 import { Request, Response } from 'express';
-import Thought from '../models/thought';
-import User from '../models/user';
+import Thought from '../models/Thought';
+import User from '../models/User';
+
+
 
 const thoughtController = {
 // get all thoughts
 
-  async getAllThoughts(req: Request, res: Response) {
+  async getAllThoughts(_req: Request, res: Response) {
     try {
       const thoughts = await Thought.find();
       res.json(thoughts);
@@ -26,18 +28,19 @@ const thoughtController = {
 
 // get single thought by id
 async getThoughtById(req: Request, res: Response) {
-    try {
-      const thought = await Thought.findById(req.params.thoughtId);
+  try {
+    const thought = await Thought.findById(req.params.thoughtId);
 
-      if (!thought) {
-        return res.status(404).json({ message: 'Thought not found' });
-      }
-
-      res.json(thought);
-    } catch (err) {
-      res.status(500).json(err);
+    if (!thought) {
+      return res.status(404).json({ message: 'Thought not found' });
     }
-  },
+
+    return res.json(thought); // Explicitly return here
+  } catch (err) {
+    return res.status(500).json(err); // Explicitly return in catch
+  }
+},
+
 
   // Create a thought
   async createThought(req: Request, res: Response) {
@@ -66,9 +69,9 @@ async getThoughtById(req: Request, res: Response) {
         return res.status(404).json({ message: 'Thought not found' });
       }
 
-      res.json(updatedThought);
+      return res.json(updatedThought);
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   },
 
@@ -81,9 +84,9 @@ async getThoughtById(req: Request, res: Response) {
         return res.status(404).json({ message: 'Thought not found' });
       }
 
-      res.json({ message: 'Thought deleted successfully' });
+      return res.json({ message: 'Thought deleted successfully' });
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   },
 
@@ -100,9 +103,9 @@ async getThoughtById(req: Request, res: Response) {
         return res.status(404).json({ message: 'Thought not found' });
       }
 
-      res.json(updatedThought);
+      return res.json(updatedThought);
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   },
 
@@ -119,9 +122,9 @@ async getThoughtById(req: Request, res: Response) {
         return res.status(404).json({ message: 'Thought not found' });
       }
 
-      res.json(updatedThought);
+      return res.json(updatedThought);
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   }
 };

@@ -14,15 +14,10 @@ const reactionSchema = new Schema({
         type: String,
         required: true,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => new Date(timestamp).toLocaleString(),
-    },
 }, {
+    timestamps: true, // ✅ Automatically adds createdAt and updatedAt
     toJSON: {
-        getters: true,
-    },
-    id: false,
+        getters: true // ✅ Ensures that Mongoose applies any getter functions
+    }
 });
 export default reactionSchema;

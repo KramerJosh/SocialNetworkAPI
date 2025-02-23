@@ -24,18 +24,14 @@ const reactionSchema = new Schema<IReaction>(
       type: String,
       required: true,
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: (timestamp: number) => new Date(timestamp).toLocaleString(),
-    },
   },
-  {
-    toJSON: {
-      getters: true,
-    },
-    id: false,
+  { 
+    timestamps: true, // ✅ Automatically adds createdAt and updatedAt
+    toJSON: { 
+      getters: true // ✅ Ensures that Mongoose applies any getter functions
+    } 
   }
 );
+
 
 export default reactionSchema;

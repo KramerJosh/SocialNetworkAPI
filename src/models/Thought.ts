@@ -19,25 +19,22 @@ const thoughtSchema = new Schema<IThought>(
       minlength: 1,
       maxlength: 280,
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: (timestamp: number) => new Date(timestamp).toLocaleString(),
-    },
     username: {
       type: String,
       required: true,
     },
-    reactions: [reactionSchema],
+    reactions: [reactionSchema], // Nested reactions schema
   },
   {
+    timestamps: true, // ✅ Automatically adds createdAt and updatedAt
     toJSON: {
       virtuals: true,
       getters: true,
     },
-    id: false,
+    id: false, // Removes default `_id` field when converting to JSON
   }
 );
+
 
 // Virtual to get the reaction count
 thoughtSchema.virtual('reactionCount').get(function (this: IThought) {
