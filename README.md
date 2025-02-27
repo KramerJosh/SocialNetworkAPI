@@ -1,6 +1,9 @@
 # SocialNetworkAPI
 Social Network API for Challenge 17
 
+Recording link: 
+[Recording](https://drive.google.com/file/d/12PRnEXJlyWRXigzd23OL44lXGcFuV7Tw/view)
+
 # Installation
 Pretty straightforward!  No environment variables need to altered, just make sure you have mongoDB installed.
 Once everything is downloaded please navigate to the top level of the project, where the outermost package.json file is, and run an "npm i"
